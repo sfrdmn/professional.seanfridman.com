@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>CV | professional.seanfridman.com</title>
+    <title>Bio | professional.seanfridman.com</title>
     <meta name="description" content="CV | Sean Fridman, Software Engineer">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:title" content="professional.seanfridman.com | CV">
@@ -31,6 +31,10 @@
        --margin: calc(var(--shrink-02) * 1rem);
        --padding: calc(var(--scale-01) * 1rem);
        --shadow-offset: 2px 5px;
+       --shadow-opacity: 0.05;
+       --cta-offset-x: 99px;
+       --cta-offset-y: 450px;
+       --cta-rotation: 10.5deg;
        --display: flex;
      }
 
@@ -50,7 +54,7 @@
        margin: 0;
        padding: 0;
        height: 100%;
-       width: 100%
+       width: 100%;
      }
 
      button {
@@ -68,12 +72,17 @@
      }
 
      body {
+       position: relative;
        display: var(--display);
        align-items: center;
        justify-content: center;
        font-family: sofia-pro, serif;
        font-weight: 300;
        background-color: var(--background-color);
+       background-image: url('bg.png');
+       background-blend-mode: overlay;
+       background-position: -200px -200px;
+       background-size: 400px 400px;
        line-height: calc(var(--scale-01) * 1rem);
        padding: var(--margin);
      }
@@ -90,7 +99,7 @@
        border: 1px solid var(--primary-color);
        border-radius: 3px;
        background-color: var(--secondary-color);
-       box-shadow: var(--shadow-offset) 0 rgba(0, 0, 0, 0.05);
+       box-shadow: var(--shadow-offset) 0 rgba(0, 0, 0, var(--shadow-opacity));
        max-width: calc(var(--scale-12) * 1rem);
      }
 
@@ -138,14 +147,14 @@
 
      }
 
-     .ThisMarkupIsLying {
+     .this-markup-is-lying {
        font-family: TheMark;
        font-variation-settings: 'wdth' 790;
        -webkit-animation: oscillate 4s steps(2, jump-none) infinite;
        animation: oscillate 4s steps(2, jump-none) infinite;
      }
 
-     .ThisMarkupIsLying:before {
+     .this-markup-is-lying:before {
        content: "m";
      }
 
@@ -156,11 +165,40 @@
          --shadow-offset: 5px 5px;
          --display: block;
        }
+
+       body {
+         background-image: none;
+       }
+
+       body::before {
+         content: "";
+         z-index: -1;
+         background-image: url(bg.png);
+         opacity: 0.25;
+         background-size: 400px 400px;
+         background-repeat: no-repeat;
+         background-blend-mode: overlay;
+         pointer-events: none;
+         position: absolute;
+         top: var(--cta-offset-y);
+         left: var(--cta-offset-x);
+         width: 400px;
+         height: 400px;
+         transform: rotate(var(--cta-rotation));
+       }
      }
 
      @media (min-width: 1800px) {
        :root {
          --display: flex;
+       }
+
+       body {
+         background-image: url(bg.png);
+       }
+
+       body::before {
+         display: none;
        }
      }
     </style>
@@ -170,11 +208,19 @@
     <main>
       <h1>Hello. My name is Sean Fridman.</h1>
       <p>
-        I'm a software engineer based in New York City with extensive experience working in the web, mobile, and data engineering stacks. Among the companies I've worked for are <a href="https://squarespace.com">Squarespace</a>, <a href="https://laboratories.telekom.com/">T-Labs</a>, and <a href="https://okfoc.us">OKFocus</a>. I've also worked at various startups and as an independent consultant.
+        I&rsquo;m a software engineer with over 10 years of industry experience, having worked in San Francisco, Berlin, and New York City. I have worked in web, mobile, backend, and data engineering roles, among others. Some of the companies I have worked for are <a href="https://www.disneyplus.com/">Disney</a>, <a href="https://squarespace.com">Squarespace</a>, <a href="https://laboratories.telekom.com/">T-Labs</a>, and <a href="https://okfoc.us">OKFocus</a>.
+      </p>
+      <!-- <p> -->
+      <!--   I&rsquo;m a software engineer based in New York City with extensive experience working in the web, mobile, and data engineering stacks. Among the companies I&rsquo;ve worked for are <a href="https://squarespace.com">Squarespace</a>, <a href="https://laboratories.telekom.com/">T-Labs</a>, and <a href="https://okfoc.us">OKFocus</a>. I&rsquo;ve also worked at various startups and as an independent consultant. -->
+      <!-- </p> -->
+
+      <p>
+        My focus is on establishing clear communication, clear requirements, a clear domain model, and in finding an appropriate balance between extensibility and delivery.
+        I am fluent in platform and library development, as well as in end-to-end product development.
       </p>
 
       <p>
-        Most recently I've worked as a data engineer. Regarding consulting work, please inquire for a portfolio.
+        If you are interested in working together please feel free to reach out to me by email.
       </p>
 
       <ul>
@@ -183,7 +229,7 @@
         <li><button class="inline email-link">Email</button></li>
       </ul>
 
-      <span class="ThisMarkupIsLying"></span>
+      <span class="this-markup-is-lying"></span>
     </main>
     <script>
      const secretFunc = x => atob(x + '=')
